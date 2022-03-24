@@ -84,5 +84,6 @@ export class News extends Component {
     )
   }
 }
+/// git hub comment
 
 export default News
