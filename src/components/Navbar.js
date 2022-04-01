@@ -1,16 +1,17 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 
+import { Link , useLocation} from 'react-router-dom'
 
-export class Navbar extends Component {
- 
+import React, { useEffect } from 'react'
 
-  
-
-  render() {
-    return (
-      <div>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+const Navbar = () => {
+  let locatior = useLocation(); 
+  useEffect(()=> {
+    console.log(locatior.pathname);
+  }, [locatior])
+  return (
+    <div>
+      
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
   <div className="container-fluid">
     <Link className="navbar-brand" to="/">Daily News</Link>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="/navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,13 +30,13 @@ export class Navbar extends Component {
             NewsType
           </a>
           <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><Link className="dropdown-item" to ="/sports">Sports</Link></li>
-            <li><Link className="dropdown-item" to ="/science">Science</Link></li>
+            <li><Link className={`dropdown-item ${locatior.pathname==="/sports"?"active":""}`} to ="/sports">Sports</Link></li>
+            <li><Link className={`dropdown-item ${locatior.pathname==="/science"?"active":""}`} to ="/science">Science</Link></li>
             <li><hr className="dropdown-divider"/></li>
-            <li><Link className="dropdown-item" to="/business">Business</Link></li>
-            <li><Link className="dropdown-item" to="/entertainment">Entertainment</Link></li>
-            <li><Link className="dropdown-item" to="/technology ">technology</Link></li>
-            <li><Link className="dropdown-item" to="/health">Health</Link></li>
+            <li><Link className= {`dropdown-item ${locatior.pathname==="/business"?"active":""}`} to="/business">Business</Link></li>
+            <li><Link className={`dropdown-item ${locatior.pathname==="/entertainment"?"active":""}`} to="/entertainment">Entertainment</Link></li>
+            <li><Link className={`dropdown-item ${locatior.pathname==="/technology"?"active":""}`} to="/technology ">technology</Link></li>
+            <li><Link className={`dropdown-item ${locatior.pathname==="/health"?"active":""}`} to="/health">Health</Link></li>
           </ul>
         </li>
         
@@ -44,9 +45,26 @@ export class Navbar extends Component {
     </div>
   </div>
 </nav>
-      </div>
-    )
-  }
+      
+    </div>
+  )
 }
 
 export default Navbar
+
+
+
+    
+ 
+   
+   
+ 
+
+  
+
+  
+    
+  
+
+
+
