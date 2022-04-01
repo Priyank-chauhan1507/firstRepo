@@ -28,14 +28,18 @@ export class News extends Component {
     }
   }
    async componentDidMount(){
+     this.props.setProgress(10);
     let url =`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=6e84e60b506340a5b6b2799ab54bf6e7&page=1&pageSize=6`
     let data = await fetch(url);
     let parsedData =  await data.json();
     
     this.setState({articles: parsedData.articles, 
                         load: false})
+                        this.props.setProgress(100);
   }
+ 
   handleprevClick =async()=>{
+    this.props.setProgress(10);
     let url =`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=6e84e60b506340a5b6b2799ab54bf6e7&page=${this.state.page-1}&pageSize=6`
     this.setState({load:true})
   let data = await fetch(url);
@@ -44,9 +48,11 @@ export class News extends Component {
   this.setState({articles: parsedData.articles,
                     page: this.state.page-1,
                      load:false })
+                     this.props.setProgress(100);
 
   }
   handlenextClick = async()=>{
+    this.props.setProgress(10);
   
   let url =`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=6e84e60b506340a5b6b2799ab54bf6e7&page=${this.state.page+1}&pageSize=6`
     this.setState({load:true})
@@ -56,7 +62,7 @@ export class News extends Component {
   this.setState({articles: parsedData.articles,
                     page: this.state.page+1,
                   load:false })
-
+                  this.props.setProgress(100);
 }
   render() {
     return (
